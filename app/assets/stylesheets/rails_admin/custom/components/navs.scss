@@ -1,0 +1,28 @@
+.nav {
+
+  &-tabs {
+
+    &-main-show {
+      border: none;
+
+      li.show_member_link {
+        display: none
+      }
+
+      li.edit_member_link .dropdown-item {
+        @extend .btn;
+        @extend .btn-white;
+      }
+
+      li.delete_member_link .dropdown-item {
+        @extend .btn;
+        @extend .btn-danger;
+        margin-left: $spacer-3;
+
+        .fas {
+          color: $white;
+        }
+      }
+    }
+  }
+}

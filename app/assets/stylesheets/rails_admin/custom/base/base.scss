@@ -1,0 +1,5 @@
+// Font anti-aliasing fix for Mac users
+* {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}

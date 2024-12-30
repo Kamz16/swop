@@ -1,0 +1,40 @@
+.dropdown {
+
+  &-menu {
+    border: $border-width solid $border-color;
+    box-shadow: $md-box-shadow;
+  }
+
+  &-item {
+    font-weight: $fw-semibold;
+
+    .fa-solid,
+    .fas {
+      color: $text-secondary-color;
+      margin-right: $spacer-2;
+    }
+  }
+
+  &-admin {
+
+    .btn {
+
+      @include media-breakpoint-up(md) {
+        max-width: rem(200px);
+        overflow: hidden;
+      }
+
+      @include media-breakpoint-up(xl) {
+        max-width: rem(225px);
+      }
+
+      @include media-breakpoint-up(xxl) {
+        max-width: rem(250px);
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+  }
+}

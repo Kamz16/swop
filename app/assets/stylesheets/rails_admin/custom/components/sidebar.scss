@@ -1,0 +1,115 @@
+.sidebar {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: $primary-gradient;
+  border-radius: $xl-border-radius;
+  bottom: 0;
+  box-shadow: $lg-box-shadow;
+  display: none;
+  left: 0;
+  padding: $spacer-2;
+  position: fixed;
+  top: 0;
+  transition: $md-transition;
+
+  @include media-breakpoint-up(lg) {
+    bottom: $spacer-6;
+    display: block;
+    left: $spacer-4;
+    top: $spacer-6;
+    width: rem(250px);
+  }
+
+  li {
+    margin-bottom: 0 !important;
+
+    & + li .btn-toggle {
+      border: 0;
+      color: rgba($white, 0.675);
+      font-size: $xs-font-size;
+      font-weight: $fw-medium;
+      line-height: 1;
+      margin-bottom: $spacer-2;
+      margin-top: $spacer-2;
+      padding: $spacer-5 $spacer-4 $spacer-1 $spacer-4;
+      pointer-events: none;
+      position: relative;
+      text-align: start;
+      width: 100%;
+
+      &::before {
+        background-color: rgba($white, 0.15);
+        content: "";
+        height: $border-width;
+        left: 0;
+        margin-left: $spacer-4;
+        margin-right: $spacer-4;
+        position: absolute;
+        top: 0;
+        width: calc(100% - #{$spacer-4 * 2});
+      }
+
+      .fas {
+        display: none;
+      }
+    }
+  }
+
+  .nav-link {
+    border-radius: $base-border-radius * 2.5; // 10px
+    border: 0;
+    color: rgba($white, 0.75);
+    font-size: $sm-font-size;
+    font-weight: $fw-bold;
+    overflow: hidden;
+    padding: $spacer-2 $spacer-4;
+    transition: $md-transition;
+
+    &:hover {
+
+      @include media-breakpoint-up(lg) {
+        background-color: rgba($white, 0.05);
+        color: $white;
+        padding-left: $spacer-5;
+      }
+    }
+
+    &.active {
+      background-color: $white;
+      color: $dark-color;
+      font-weight: $fw-extrabold;
+      position: relative;
+
+      &::after {
+        background-color: lighten(adjust-hue($primary-color, -36%), 8%);
+        border-bottom-left-radius: $sm-border-radius;
+        border-top-left-radius: $sm-border-radius;
+        content: "";
+        height: rem(24px);
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-45%);
+        width: rem(3px);
+      }
+
+      &:hover {
+
+        @include media-breakpoint-up(lg) {
+          background-color: $white;
+          color: $dark-color;
+          padding-left: $spacer-4;
+        }
+      }
+
+      .fas {
+        color: $primary-color;
+      }
+    }
+
+    .fas {
+      margin-right: $spacer-2;
+    }
+  }
+}

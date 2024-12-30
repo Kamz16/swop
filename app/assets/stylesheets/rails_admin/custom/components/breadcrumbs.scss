@@ -1,0 +1,18 @@
+.breadcrumb {
+  font-size: $sm-font-size;
+  font-weight: $fw-semibold;
+  line-height: 1;
+  margin-bottom: $spacer-2;
+
+  &-item {
+    align-items: baseline;
+    display: flex;
+
+    & + .breadcrumb-item::before {
+      @extend .fa-sm;
+      @extend .fa-solid;
+      color: $primary-color;
+      content: "\f105";
+    }
+  }
+}

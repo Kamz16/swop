@@ -1,0 +1,86 @@
+// Colors
+$white: #fff;
+$black: #000;
+
+$azure: #245ae4;            // Private – Primary color
+$jnquil: #ffd334;           // Private – Secondary color
+$lime-green: #00c648;       // Private – Success color
+$amethyst: #b652e4;         // Private – Info color
+$princeton-orange: #fc9e34; // Private – Warning color
+$vermilion: #e4150a;        // Private – Danger color
+$ghost-white: #f3f6ff;      // Private – Light color
+$eerie-black: #20284e;      // Private – Dark color
+
+$dim-gray: #606884;   // Private – Text color
+$taupe-gray: #8C8ea2; // Private – Text secondary color
+
+$platinum: #ecf0fa; // Private – Border color
+
+$primary-color: $azure;
+$secondary-color: $jnquil;
+$success-color: $lime-green;
+$info-color: $amethyst;
+$warning-color: $princeton-orange;
+$danger-color: $vermilion;
+$light-color: $ghost-white;
+$dark-color: $eerie-black;
+
+$text-color: $dim-gray;
+$text-secondary-color: $taupe-gray;
+
+$primary-gradient: linear-gradient(125deg, lighten($primary-color, 2.5%) 0%, darken($primary-color, 2.5%) 100%);
+
+// Spacing
+$spacer: rem(4px);
+$spacer-1: $spacer;       // 4px
+$spacer-2: $spacer * 2;   // 8px
+$spacer-3: $spacer * 3;   // 12px
+$spacer-4: $spacer * 4;   // 16px
+$spacer-5: $spacer * 5;   // 20px
+$spacer-6: $spacer * 6;   // 24px
+$spacer-7: $spacer * 7;   // 28px
+$spacer-8: $spacer * 8;   // 32px
+$spacer-9: $spacer * 10;  // 40px
+$spacer-10: $spacer * 12; // 48px
+$spacer-11: $spacer * 14; // 56px
+
+// Components
+$border-width: rem(1px);
+$border-color: $platinum;
+
+$base-border-radius: rem(4px);
+$md-border-radius: $base-border-radius * 2; // 8px
+$sm-border-radius: $base-border-radius;     // 4px
+$lg-border-radius: $base-border-radius * 3; // 12px
+$xl-border-radius: $base-border-radius * 5; // 16px
+
+$md-box-shadow: 0 0 rem(16px 12px) rgba(darken($primary-color, 5%), 0.025);
+$lg-box-shadow: 0 0 rem(24px 16px) rgba(darken($primary-color, 5%), 0.05);
+
+// Typography
+$body-family: "Mulish", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$base-font-size: rem(16px);
+
+$md-font-size: $base-font-size;             // 16px
+$xs-font-size: $base-font-size * 0.786625;  // 12.586px
+$sm-font-size: $base-font-size * 0.8869375; // 14.191px
+$lg-font-size: $base-font-size * 1.1275;    // 18.04px
+
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+$fw-extrabold: 800;
+
+$h1-font-size: $base-font-size * 2.0544375; // 32.871px
+$h2-font-size: $base-font-size * 1.822125;  // 29.154px
+$h3-font-size: $base-font-size * 1.6160625; // 25.857px
+$h4-font-size: $base-font-size * 1.4333125; // 22.933px
+$h5-font-size: $base-font-size * 1.27125;   // 20.34px
+$h6-font-size: $base-font-size * 1.1275;    // 18.04px
+
+$headings-family: "Mulish", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Other
+$md-transition: all 0.275s cubic-bezier(0.1, 0, 0.1, 1);

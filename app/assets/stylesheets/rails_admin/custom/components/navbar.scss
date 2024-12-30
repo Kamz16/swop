@@ -1,0 +1,18 @@
+.navbar {
+
+  &-toggler {
+
+    .navbar-toggler-icon {
+      background-color: $dark-color;
+      background-image: none;
+      border-radius: $sm-border-radius;
+      display: block;
+      height: rem(2px);
+      width: rem(28px);
+
+      & + .navbar-toggler-icon {
+        margin-top: $spacer-2;
+      }
+    }
+  }
+}

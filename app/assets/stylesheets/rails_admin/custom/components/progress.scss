@@ -1,0 +1,11 @@
+.progress {
+  font-weight: $fw-bold;
+
+  &-bar {
+    border-radius: $lg-border-radius;
+    padding-left: $spacer-2;
+    padding-right: $spacer-2;
+    text-align: end;
+    min-width: rem(28px);
+  }
+}
