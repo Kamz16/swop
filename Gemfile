@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-# Specify your gem's dependencies in swop.gemspec
 gemspec
 
 gem "rake", "~> 13.0"
+gem "rails_admin", ">= 2.0"
