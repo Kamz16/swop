@@ -1,0 +1,28 @@
+<section class="bg-white p-5 p-md-7 p-lg-9 mb-5 mb-md-6 shadow rounded-3">
+  <% @model_config.show.with(object: @object, view: self, controller: self.controller).visible_groups.each do |fieldset| %>
+    <% unless (fields = fieldset.with(object: @object, view: self, controller: self.controller).visible_fields).empty? %>
+      <% unless (fields = fields.reject{ |f| RailsAdmin::config.compact_show_view && (f.formatted_value.nil? || f.formatted_value == '') }).empty? %>
+        <div class="fieldset">
+          <div class="d-md-flex mb-4 mb-md-5">
+            <div>
+              <h2 class="mb-2"><%= fieldset.label %></h2>
+              <% if fieldset.help %>
+                <p class="mb-4 mb-md-0"><%= fieldset.help %></p>
+              <% end %>
+            </div>
+            <ul class="nav nav-tabs nav-tabs-main-show mb-4 mb-md-0 ms-auto">
+              <%= menu_for((@abstract_model ? (@object.try(:persisted?) ? :member : :collection) : :root), @abstract_model, @object) %>
+              <%= content_for :contextual_tabs %>
+            </ul>
+          </div>
+          <% fields.each_with_index do |field, index| %>
+            <div class="card border-top-0 border-start-0 border-end-0 border-bottom-0 mb-6 mb-md-8">
+              <h3 class="h6 card-header bg-white px-0 pb-2 pt-0"><%= field.label %></h3>
+              <div class="card-body px-o pt-2 pb-0"><%= field.pretty_value %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>

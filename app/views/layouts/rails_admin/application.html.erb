@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <%= render "layouts/rails_admin/head" %>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <title>
+      <%= "#{@abstract_model.try(:pretty_name) || @page_name} | #{[_get_plugin_name[0] || 'Rails', _get_plugin_name[1] || 'Admin'].join(' ')}" %>
+    </title>
+  </head>
+  <body class="rails_admin">
+    <div data-i18n-options="<%= I18n.t("admin.js").to_json %>" id="admin-js"></div>
+    <!-- To-DO: Review this -->
+    <div class="badge bg-warning" id="loading" style="display:none; position:fixed; right:20px; bottom:20px; z-index:100000">
+      <%= t('admin.loading') %>
+    </div>
+    <%= render "layouts/rails_admin/sidebar_navigation" %>
+    <div class="container-fluid position-relative">
+      <%= render template: 'layouts/rails_admin/content' %>
+    </div>
+  </body>
+</html>
