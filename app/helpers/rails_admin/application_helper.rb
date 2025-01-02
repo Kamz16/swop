@@ -163,6 +163,31 @@ module RailsAdmin
     # perf matters here (no action view trickery)
     def menu_for(parent, abstract_model = nil, object = nil, only_icon = false)
       actions = actions(parent, abstract_model, object).select { |a| a.http_methods.include?(:get) && a.show_in_menu }
+      actions.collect do |action|
+        wording = wording_for(:menu, action)
+        li_class = ['nav-item', 'icon', "#{action.key}_#{parent}_link"].
+                   concat(action.enabled? ? [] : ['disabled'])
+        content_tag(:li, {class: li_class}.merge(only_icon ? {title: wording, rel: 'tooltip'} : {})) do
+          label = content_tag(:i, '', {class: action.link_icon + ' fa-sm fa-fw me-2'}) + ' ' + content_tag(:span, wording, (only_icon ? {style: 'display:none'} : {}))
+          if action.enabled? || !only_icon
+            href =
+              if action.enabled?
+                rails_admin.url_for(action: action.action_name, controller: 'rails_admin/main', model_name: abstract_model.try(:to_param), id: (object.try(:persisted?) && object.try(:id) || nil))
+              else
+                'javascript:void(0)'
+              end
+            content_tag(:a, label, {href: href, target: action.link_target, class: ['dropdown-item', current_action?(action) && 'active', !action.enabled? && 'disabled'].compact}.merge(action.turbo? ? {} : {data: {turbo: 'false'}}))
+          else
+            content_tag(:span, label)
+          end
+        end
+      end.join(' ').html_safe
+    end
+
+    # parent => :root, :collection, :member
+    # perf matters here (no action view trickery)
+    def button_for(parent, abstract_model = nil, object = nil, only_icon = false)
+      actions = actions(parent, abstract_model, object).select { |a| a.http_methods.include?(:get) && a.show_in_menu }
 
       # Filter out list action
       actions.reject! { |action| %i[index].include?(action.key) }
@@ -186,7 +211,9 @@ module RailsAdmin
             content_tag(:a, label, {href: href, target: action.link_target, class: [link_class, button_class, !action.enabled? && 'disabled'].compact}.merge(action.turbo? ? {} : {data: {turbo: 'false'}}))
           end
         else
-          content_tag(:span, label)
+          content_tag(:div, class: "col-md-auto") do
+            content_tag(:a, label, {href: "#", target: "#", class: [link_class, button_class, 'disabled'].compact}.merge(action.turbo? ? {} : {data: {turbo: 'false'}}))
+          end
         end
       end.join(' ').html_safe
     end

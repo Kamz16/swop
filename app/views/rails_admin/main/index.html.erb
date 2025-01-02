@@ -54,7 +54,7 @@
             <div class="form-text"><%= @model_config.list.search_help %></div>
           <% end %>
         </div>
-        <%= menu_for((@abstract_model ? (@object.try(:persisted?) ? :member : :collection) : :root), @abstract_model, @object) %>
+        <%= button_for((@abstract_model ? (@object.try(:persisted?) ? :member : :collection) : :root), @abstract_model, @object) %>
       </div>
     </section>
   <% end %>
