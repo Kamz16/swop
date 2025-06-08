@@ -18,10 +18,29 @@
 %>
 
 <% content_for :contextual_tabs do %>
+  <% if filterable_fields.present? %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+        <%= t('admin.misc.add_filter') %>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end" id="filters">
+        <% filterable_fields.each do |field| %>
+          <li>
+            <a
+              href="#"
+              class="dropdown-item"
+              data-options="<%= field.with(view: self).filter_options.to_json %>"
+            >
+              <%= field.label %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
   <% if checkboxes %>
-    <div class="col-md-auto">
-      <%= bulk_menu %>
-    </div>
+    <%= bulk_menu %>
   <% end %>
 <% end %>
 
@@ -34,11 +53,10 @@
 
 <div id="list">
   <%= form_tag(index_path(params.except(*%w[page f query])), method: :get) do %>
-    <section class="mb-md-6">
+    <div class="mb-6 mb-md-7">
       <div class="row" data-options="<%= ordered_filter_options.to_json %>" id="filters_box"></div>
-      <hr class="filters_box" style="display:<%= ordered_filters.empty? ? 'none' : 'block' %>"/>
-      <div class="row justify-content-end gx-5 gy-3 gy-md-0">
-        <%= content_for :contextual_tabs %>
+      <hr class="filters_box mt-2 mb-4 mb-md-5" style="display:<%= ordered_filters.empty? ? 'none' : 'block' %>"/>
+      <div class="row justify-content-between gy-3 gy-md-0">
         <div class="col-md-auto">
           <div class="input-group">
             <input class="form-control" name="query" placeholder="<%= t("admin.misc.search") %>" type="search" value="<%= query %>" />
@@ -54,9 +72,13 @@
             <div class="form-text"><%= @model_config.list.search_help %></div>
           <% end %>
         </div>
-        <%= button_for((@abstract_model ? (@object.try(:persisted?) ? :member : :collection) : :root), @abstract_model, @object) %>
+        <div class="col-md-auto text-end">
+          <% if export_action %>
+            <%= link_to wording_for(:link, export_action), export_path(params.except('page')), class: 'btn btn-white w-100' %>
+          <% end %>
+        </div>
       </div>
-    </section>
+    </div>
   <% end %>
   <% unless @model_config.list.scopes.empty? %>
     <ul class="nav nav-tabs" id="scope_selector">
@@ -70,7 +92,7 @@
       <% end %>
     </ul>
   <% end %>
-  <%= form_tag bulk_action_path(model_name: @abstract_model.to_param), method: :post, id: "bulk_form", class: ["form", "mb-3"] do %>
+  <%= form_tag bulk_action_path(model_name: @abstract_model.to_param), method: :post, id: "bulk_form", class: ["form", "mb-3", "overflow-hidden"] do %>
     <%= hidden_field_tag :bulk_action %>
     <% if description.present? %>
       <p>
@@ -79,14 +101,13 @@
         </strong>
       </p>
     <% end %>
-
-    <section class="bg-white p-4 p-md-5 shadow rounded-3">
-      <div id="sidescroll">
-        <table class="table table-condensed new">
+    <div id="sidescroll">
+      <div class="table-responsive mb-4 mb-md-5">
+        <table class="table table-condensed table-hover">
           <thead>
             <tr>
               <% if checkboxes %>
-                <th class="shrink sticky">
+                <th class="shrink sticky z-1">
                   <input class="toggle form-check-input" type="checkbox" />
                 </th>
               <% end %>
@@ -96,16 +117,16 @@
                   <% sort_location = index_path params.except('sort_reverse').except('page').merge(sort: property.name).merge(selected && sort_reverse != "true" ? {sort_reverse: "true"} : {}) %>
                   <% sort_direction = (sort_reverse == 'true' ? "headerSortUp" : "headerSortDown" if selected) %>
                 <% end %>
-                <th class="<%= [property.sortable && "header", property.sortable && sort_direction, property.sticky? && 'sticky', property.css_class, property.type_css_class, "small text-muted fw-semibold"].select(&:present?).join(' ') %>" data-href="<%= property.sortable && sort_location %>" rel="tooltip" title="<%= property.hint %>">
+                <th class="<%= [property.sortable && "header", property.sortable && sort_direction, property.sticky? && 'sticky', property.css_class, property.type_css_class].select(&:present?).join(' ') %>" data-href="<%= property.sortable && sort_location %>" rel="tooltip" title="<%= property.hint %>">
                   <%= property.label %>
                 </th>
               <% end %>
               <th class="last shrink"></th>
             </tr>
           </thead>
-          <tbody class="table-group-divider">
+          <tbody>
             <% @objects.each do |object| %>
-              <tr class="<%= @abstract_model.param_key %>_row <%= @model_config.list.with(object: object).row_css_class %> small">
+              <tr class="<%= @abstract_model.param_key %>_row <%= @model_config.list.with(object: object).row_css_class %>">
                 <% if checkboxes %>
                   <td class="sticky align-middle">
                     <%= check_box_tag "bulk_ids[]", object.id.to_s, false, class: "form-check-input"  %>
@@ -117,20 +138,15 @@
                     <%= value %>
                   <% end %>
                 <% end %>
-                <td class="last links ra-sidescroll-frozen overflow-visible align-middle">
-                  <div class="dropdown dropstart">
-                    <button class="btn btn-dropdown btn-sm btn-square" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <i class="fas fa-ellipsis-vertical"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <%= menu_for :member, @abstract_model, object, false %>
-                    </ul>
-                  </div>
+                <td class="last links ra-sidescroll-frozen">
+                  <ul class="nav d-flex align-items-center justify-content-end flex-nowrap gap-2 gap-md-3 mb-0">
+                    <%= menu_for :member, @abstract_model, object, true %>
+                  </ul>
                 </td>
               </tr>
             <% end %>
             <% if @objects.empty? %>
-              <tr class="small empty_row">
+              <tr class="empty_row">
                 <td colspan="<%= table_table_header_count %>">
                   <%= I18n.t('admin.actions.index.no_records') %>
                 </td>
@@ -139,32 +155,20 @@
           </tbody>
         </table>
       </div>
-      <% if @model_config.list.limited_pagination %>
-        <div class="row">
-          <div class="col-md-6">
-            <%= paginate(@objects, theme: 'ra-twitter-bootstrap/without_count', total_pages: Float::INFINITY) %>
-          </div>
-        </div>
-      <% elsif @objects.respond_to?(:total_count) %>
-        <% total_count = @objects.total_count.to_i %>
-        <div class="row">
-          <div class="col-md-6">
-            <%= paginate(@objects, theme: 'ra-twitter-bootstrap') %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <%= link_to(t("admin.misc.show_all"), index_path(params.merge(all: true)), class: "show-all btn btn-light clearfix") unless total_count > 100 || total_count <= @objects.to_a.size %>
-          </div>
-        </div>
-        <div class="small clearfix total-count">
-          <%= "#{total_count} #{@model_config.pluralize(total_count).downcase}" %>
-        </div>
-      <% else %>
-        <div class="small clearfix total-count">
-          <%= "#{@objects.size} #{@model_config.pluralize(@objects.size).downcase}" %>
-        </div>
-      <% end %>
-    </section>
+    </div>
+    <% if @model_config.list.limited_pagination %>
+      <%= paginate(@objects, theme: 'ra-twitter-bootstrap/without_count', total_pages: Float::INFINITY) %>
+    <% elsif @objects.respond_to?(:total_count) %>
+      <% total_count = @objects.total_count.to_i %>
+        <%= paginate(@objects, theme: 'ra-twitter-bootstrap') %>
+        <%= link_to(t("admin.misc.show_all"), index_path(params.merge(all: true)), class: "show-all clearfix") unless total_count > 100 || total_count <= @objects.to_a.size %>
+      <div class="clearfix total-count mt-4 mt-md-5">
+        <%= "#{total_count} #{@model_config.pluralize(total_count).downcase}" %>
+      </div>
+    <% else %>
+      <div class="clearfix total-count">
+        <%= "#{@objects.size} #{@model_config.pluralize(@objects.size).downcase}" %>
+      </div>
+    <% end %>
   <% end %>
 </div>

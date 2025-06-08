@@ -1,0 +1,44 @@
+// Variables
+@import "simple/base/variables";
+
+
+<% if Rails.application.config.theme_variant == :light %>
+  @import "simple/base/variables-light";
+<% end %>
+
+
+
+// Shared - Bootstrap variables (Funnel)
+@import "base/bootstrap-variables";
+
+// Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// Base
+@import "simple/base/typography";
+
+// Layouts
+@import "simple/layouts/rows";
+
+// Components
+@import "simple/components/alerts";
+@import "simple/components/breadcrumbs";
+@import "simple/components/buttons";
+@import "simple/components/containers";
+@import "simple/components/dropdowns";
+@import "simple/components/filter-box";
+@import "simple/components/filtering-multiselect";
+@import "simple/components/filtering-select";
+@import "simple/components/forms";
+@import "simple/components/images";
+@import "simple/components/links";
+@import "simple/components/navs";
+@import "simple/components/progress";
+@import "simple/components/sidebar";
+@import "simple/components/tables";
+
+// Light - Components
+<% if Rails.application.config.theme_variant == :light %>
+  @import "simple/light/components/sidebar";
+  @import "simple/light/components/links";
+<% end %>

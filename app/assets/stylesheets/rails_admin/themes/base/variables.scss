@@ -1,0 +1,71 @@
+// Colours
+$white: #fff;
+$black: #000;
+
+// Options
+$enable-negative-margins: true;
+
+// Spacing
+$spacer: rem(4px);
+$spacer-1: $spacer * 1;   // 4px
+$spacer-2: $spacer * 2;   // 8px
+$spacer-3: $spacer * 3;   // 12px
+$spacer-4: $spacer * 4;   // 16px
+$spacer-5: $spacer * 5;   // 20px
+$spacer-6: $spacer * 6;   // 24px
+$spacer-7: $spacer * 8;   // 32px
+$spacer-8: $spacer * 10;  // 40px
+$spacer-9: $spacer * 12;  // 48px
+$spacer-10: $spacer * 16; // 64px
+$spacer-11: $spacer * 20; // 80px
+$spacer-12: $spacer * 24; // 96px
+$spacer-13: $spacer * 28; // 112px
+$spacer-14: $spacer * 32; // 128px
+$spacer-15: $spacer * 36; // 144px
+
+// Grid columns
+$grid-columns: 24;
+
+// Components
+$border-width: rem(1px);
+
+$base-border-radius: rem(4px);
+
+// Typography
+$base-font-size: rem(16px);
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$font-weight-base: $font-weight-normal;
+
+$line-height-base: 1.5;
+$line-height-sm: 1.25;
+$line-height-lg: 1.75;
+
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: $line-height-sm;
+
+$display-font-weight: $font-weight-base;
+
+$lead-font-weight: $font-weight-base;
+
+$hr-margin-y: 0;
+
+$hr-height: $border-width;
+
+$hr-border-width: $border-width;
+$hr-opacity: 1;
+
+// Buttons
+$btn-transition: color 0.25s cubic-bezier(0.1, 0, 0.1, 1), background-color 0.25s cubic-bezier(0.1, 0, 0.1, 1), border-color 0.25s cubic-bezier(0.1, 0, 0.1, 1), box-shadow 0.25s cubic-bezier(0.1, 0, 0.1, 1);
+
+// Offcanvas
+$offcanvas-horizontal-width: 325px;
+$offcanvas-transition-duration: 0.25s;
+
+// Other
+$transition: 0.25s cubic-bezier(0.1, 0, 0.1, 1);

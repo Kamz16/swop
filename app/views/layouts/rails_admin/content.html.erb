@@ -1,57 +1,12 @@
-<header class="header mb-4 mb-md-5 mb-lg-6">
-  <div class="row align-items-center gx-4 gy-0 gx-md-8">
-    <div class="col text-truncate">
-      <nav aria-label="breadcrumb">
-        <%= breadcrumb %>
-      </nav>
-      <h1 class="text-truncate mb-0"><%= @page_name %></h1>
-    </div>
-    <div class="col-auto">
-      <div class="dropdown dropdown-admin">
-        <button class="btn text-start p-0 d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <div class="img-wrapper-avatar flex-shrink-0 shadow">
-            <%= image_tag(gravatar_url(_current_user.email), alt: "", title: "") %>
-          </div>
-          <!-- if md breakpoint -->
-          <div class="text-truncate ms-md-4 d-none d-md-block">
-            <div class="text-dark fw-bold lh-sm text-truncate"><%= _current_user.name %></div>
-          </div>
-        </button>
-        <!-- TO-DO: Style dropdowns -->
-        <% edit_url = rails_admin.url_for(
-          action: :edit,
-          model_name: RailsAdmin.config(_current_user.class).abstract_model.to_param,
-          controller: 'rails_admin/main',
-          id: _current_user.id
-        ) %>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><%= link_to "#{icon "fa-solid", "user", class: "fa-sm fa-fw me-2"}Your account".html_safe, edit_url, class: "dropdown-item" %></li>
-          <li><%= link_to "#{icon "fa-solid", "right-from-bracket", class: "fa-sm fa-fw me-2"}Log out".html_safe, logout_path, method: logout_method, class: "dropdown-item", data: {turbo: 'false'} %></li>
-        </ul>
-      </div>
-    </div>
-    <!-- unless lg breakpoint -->
-    <div class="col-auto d-lg-none">
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        <span class="navbar-toggler-icon"></span>
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-body">
-          <%= render partial: "layouts/rails_admin/custom/nav" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- TO-DO: Review this -->
+<%= render partial: "layouts/rails_admin/header" %>
 <% flash && flash.each do |key, value| %>
-  <div class="<%= flash_alert_class(key) %> alert alert-dismissible">
+  <div class="<%= flash_alert_class(key) %> alert alert-dismissible mb-5 mb-md-6">
     <%= value %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
-
+<ul class="nav nav-tabs mb-5 mb-md-6">
+  <%= menu_for((@abstract_model ? (@object.try(:persisted?) ? :member : :collection) : :root), @abstract_model, @object) %>
+  <%= content_for :contextual_tabs %>
+</ul>
 <%= yield %>

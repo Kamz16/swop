@@ -1,0 +1,22 @@
+body.rails_admin {
+
+  /* Table cells behaviour */
+  .table {
+
+    .sticky {
+      position: sticky;
+    }
+
+    /* Shrink to content width */
+    .shrink {
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    th.last,
+    td.last {
+      position: sticky;
+      right: 0px;
+    }
+  }
+}

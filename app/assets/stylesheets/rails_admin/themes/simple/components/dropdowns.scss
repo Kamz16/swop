@@ -1,0 +1,12 @@
+.dropdown {
+
+  &-header {
+    font-weight: $font-weight-semibold;
+  }
+
+  &-header,
+  &-item {
+    font-weight: $font-weight-medium;
+    line-height: $line-height-lg;
+  }
+}

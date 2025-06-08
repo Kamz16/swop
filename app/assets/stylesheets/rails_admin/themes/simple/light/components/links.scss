@@ -1,0 +1,15 @@
+.link {
+
+  &-white {
+
+    &,
+    *[class^="fa"] {
+      color: $dark;
+    }
+
+    &:hover,
+    &:hover *[class^="fa"] {
+      color: $dark;
+    }
+  }
+}

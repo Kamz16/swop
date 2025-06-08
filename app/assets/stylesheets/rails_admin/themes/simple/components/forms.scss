@@ -1,0 +1,27 @@
+.form {
+
+  &-switch {
+
+    .form-check-input {
+      height: rem(25px);
+      margin-top: 0;
+      width: rem(48px);
+    }
+  }
+}
+
+.input-group {
+
+  &-btn {
+    border-color: $input-border-color;
+    border-left: 0;
+    box-shadow: none;
+
+    &.dropdown-toggle::after {
+      @extend .fa-solid;
+      @extend .fa-xs;
+      border: 0;
+      content: "\f078";
+    }
+  }
+}

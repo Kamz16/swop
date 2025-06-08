@@ -1,0 +1,129 @@
+// Links
+$link-decoration: none;
+$link-shade-percentage: 0%;
+$link-hover-decoration: underline;
+
+// Paragraphs
+$paragraph-margin-bottom: $spacer-3;
+
+// Grid columns
+$grid-gutter-width: $spacer-7;
+
+// Container padding
+$container-padding-x: $grid-gutter-width;
+
+// Components
+$border-radius: $base-border-radius * 2;     // 8px
+$border-radius-sm: $base-border-radius * 1;  // 4px
+$border-radius-lg: $base-border-radius * 3;  // 12px
+$border-radius-xl: $base-border-radius * 4;  // 16px
+$border-radius-xxl: $base-border-radius * 5; // 20px
+
+// Typography
+$font-family-sans-serif: "Public Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$font-size-base: $base-font-size * 0.875; // 14px
+$font-size-sm: $base-font-size * 0.75;    // 12px
+$font-size-lg: $base-font-size * 1;       // 16px
+
+$font-weight-base: $font-weight-medium;
+
+$line-height-base: 1.625;
+$line-height-sm: 1.325;
+$line-height-lg: 1.875;
+
+$h1-font-size: $base-font-size * 1.75;  // 28px
+$h2-font-size: $base-font-size * 1.5;   // 24px
+$h3-font-size: $base-font-size * 1.25;  // 20px
+$h4-font-size: $base-font-size * 1.125; // 18px
+$h5-font-size: $base-font-size * 1;     // 16px
+$h6-font-size: $base-font-size * 0.875; // 14px
+
+$headings-margin-bottom: $spacer-4;
+$headings-font-family: "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: $line-height-sm;
+
+// Tables
+$table-cell-padding-y: $spacer-2;
+$table-cell-padding-x: $spacer-4;
+
+$table-cell-vertical-align: center;
+
+$table-th-font-weight: $font-weight-semibold;
+
+$table-border-width: $border-width;
+
+// Buttons + Forms
+$input-btn-padding-y: 0.625em;
+$input-btn-padding-x: $spacer-4;
+$input-btn-line-height: $line-height-base;
+
+$input-btn-padding-y-sm: 0.625em;
+$input-btn-padding-x-sm: $spacer-3;
+
+$input-btn-padding-y-lg: 0.625em;
+$input-btn-padding-x-lg: $spacer-4;
+
+// Buttons
+$btn-padding-x: 1.325em;
+
+$btn-padding-x-sm: 1.325em;
+
+$btn-padding-x-lg: 1.325em;
+
+$btn-border-radius: 0.625em;
+$btn-border-radius-sm: 0.625em;
+$btn-border-radius-lg: 0.625em;
+
+$btn-font-weight: $font-weight-semibold;
+
+// Navs
+$nav-link-padding-y: 0;
+$nav-link-padding-x: 0;
+$nav-link-font-size: $font-size-base;
+$nav-link-font-weight: $font-weight-medium;
+
+$nav-tabs-border-radius: 0;
+
+// Dropdowns
+$dropdown-padding-y: $spacer-1;
+$dropdown-spacer: $spacer-1;
+$dropdown-font-size: $font-size-base;
+$dropdown-border-radius: 0.625em;
+$dropdown-divider-margin-y: $spacer-1;
+
+$dropdown-item-padding-y: $spacer-1;
+$dropdown-item-padding-x: $spacer-4;
+
+$dropdown-header-padding-x: $spacer-4;
+$dropdown-header-padding-y: $spacer-1;
+
+$dropdown-header-padding: $spacer-1 $spacer-4;
+
+// Offcanvas
+$offcanvas-padding-y: $spacer-5;
+$offcanvas-padding-x: $spacer-5;
+$offcanvas-horizontal-width: rem(260px);
+$offcanvas-border-width: 0;
+
+// Alerts
+$alert-padding-y: $spacer-3;
+$alert-padding-x: $spacer-4;
+$alert-margin-bottom: $spacer-5;
+$alert-border-radius: 0.625em;
+$alert-link-font-weight: $font-weight-semibold;
+$alert-border-width: 0;
+
+// Progress bars
+$progress-height: rem(14px);
+$progress-font-size: $font-size-base * 0.75;
+// $progress-bg:                       var(--#{$prefix}secondary-bg) !default;
+$progress-border-radius: 0.625em;
+// $progress-bar-color:                $white;
+// $progress-bar-bg:                   $primary !default;
+$progress-bar-transition: width $transition;
+
+// Other
+$letter-spacing-body: -0.015em;
+$letter-spacing-headings: -0.02em;

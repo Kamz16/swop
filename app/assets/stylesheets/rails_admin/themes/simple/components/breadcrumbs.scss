@@ -1,0 +1,44 @@
+.breadcrumb {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+
+  &-item {
+    align-items: baseline;
+    color: $body-color;
+    display: flex;
+    margin-right: 0.825em;
+    padding-left: 0 !important;
+
+    &::before {
+      content: none !important;
+    }
+
+    &::after {
+      @extend .fa-solid;
+      @extend .fa-sm;
+      color: $body-color;
+      content: "\f105";
+      padding-left: 0.875em;
+    }
+
+    &:last-child {
+      margin-right: 0;
+
+      &::after {
+        content: none;
+      }
+    }
+
+    &.active {
+      color: $body-color;
+    }
+
+    a {
+      color: $body-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

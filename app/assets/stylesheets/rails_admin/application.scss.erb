@@ -1,17 +1,27 @@
 @charset "UTF-8";
 
-// Mixins
-@import "rails_admin/styles/base/mixins";
-@import "rails_admin/custom/base/base";
-@import "rails_admin/custom/base/mixins";
-
-// Variables
-@import "rails_admin/custom/base/variables";
-@import "rails_admin/custom/base/bootstrap-variables";
+// RailsAdmin - Variables
 @import "rails_admin/styles/base/variables";
 
-// Bootstrap
-@import "rails_admin/bootstrap/bootstrap";
+// RailsAdmin - Mixins
+@import "rails_admin/styles/base/mixins";
+
+// Font Awesome
+@import "font-awesome";
+
+// Themes - Core
+@import "themes/base/mixins";
+
+// Themes - Variables
+@import "themes/base/variables";
+
+// Themes - Base
+@import "themes/base/base";
+
+// Themes
+<% if Rails.application.config.theme == :simple %>
+  @import "themes/simple";
+<% end %>
 
 // Libraries
 @import "rails_admin/flatpickr";
@@ -19,33 +29,11 @@
 @import "rails_admin/styles/filtering-multiselect";
 @import "rails_admin/styles/widgets";
 
-// Font Awesome
+// Font awesome
 @import "rails_admin/font-awesome";
 
 // RailsAdmin Theming
-@import "rails_admin/styles/base/theming";
-
-// Base
-@import "rails_admin/custom/base/typography";
-
-// Layouts
-@import "rails_admin/custom/layouts/body";
-@import "rails_admin/custom/layouts/containers";
-
-// Components
-@import "rails_admin/custom/components/breadcrumbs";
-@import "rails_admin/custom/components/buttons";
-@import "rails_admin/custom/components/dropdowns";
-@import "rails_admin/custom/components/filtering-select";
-@import "rails_admin/custom/components/forms";
-@import "rails_admin/custom/components/images";
-@import "rails_admin/custom/components/navbar";
-@import "rails_admin/custom/components/navs";
-@import "rails_admin/custom/components/offcanvas";
-@import "rails_admin/custom/components/progress";
-@import "rails_admin/custom/components/sidebar";
-@import "rails_admin/custom/components/table";
-@import "rails_admin/custom/components/tiles";
+@import "rails_admin/themes/base/theming";
 
 <% if defined?(ActionText::Engine) && Rails.gem_version >= Gem::Version.new('7.0') %>
   @import "trix";

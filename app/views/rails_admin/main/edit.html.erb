@@ -1,5 +1,0 @@
-<section class="bg-white p-5 p-md-7 p-lg-9 mb-5 mb-md-6 shadow rounded-3">
-  <%= rails_admin_form_for @object, url: edit_path(@abstract_model, @object.id), as: @abstract_model.param_key, html: { method: "put", multipart: true, class: "main", data: { title: @page_name } } do |form| %>
-    <%= form.generate action: :update %>
-  <% end %>
-</section>

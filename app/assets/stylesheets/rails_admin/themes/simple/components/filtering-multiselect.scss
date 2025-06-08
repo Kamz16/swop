@@ -1,0 +1,40 @@
+.ra-multiselect {
+
+  input.ra-multiselect-search {
+    width: 100% !important;
+  }
+
+  &-header {
+    margin-bottom: unset !important;
+  }
+
+  &-column {
+
+    .wrapper {
+
+      select {
+        margin-bottom: $spacer-3 !important;
+        min-width: unset !important;
+      }
+    }
+  }
+
+  &-center {
+    margin-left: unset !important;
+    margin-right: unset !important;
+    width: unset !important;
+  }
+
+  span.fas,
+  a.fas {
+    color: $primary !important;
+
+    &:hover {
+      color: lighten($primary, 2.5%) !important;
+    }
+
+    &:active {
+      color: darken(desaturate($primary, 2.5%), 2.5%) !important;
+    }
+  }
+}

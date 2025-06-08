@@ -1,0 +1,74 @@
+// Colours - https://developer.apple.com/design/human-interface-guidelines/color
+$primary: #007aff;
+$secondary: #ffcc00;
+$success: #34c759;
+$info: #af52De;
+$warning: #ff5900;
+$danger: #ff3b30;
+$light: #0E1218;
+$dark: #040507;
+
+// Body
+$body-color: #80909C;
+$body-bg: #080A0E;
+
+$body-secondary-color: #505964;
+
+// Components
+$border-color: #111620;
+
+// Typography
+$headings-color: #ffffff;
+
+$hr-color: $border-color;
+
+$hr-bg-color: $border-color;
+
+$hr-border-color: $border-color;
+
+// Tables
+$table-color: $body-color;
+$table-bg: $body-bg;
+
+$table-active-color: $body-color;
+$table-active-bg: $light;
+
+$table-hover-color: $body-color;
+$table-hover-bg: $light;
+
+$table-border-color: $border-color;
+
+// Navs
+$nav-link-color: $body-color;
+$nav-link-hover-color: $white;
+
+$nav-tabs-link-hover-border-color: $light;
+$nav-tabs-link-active-color: $primary;
+$nav-tabs-link-active-bg: transparent;
+$nav-tabs-link-active-border-color: $primary;
+$offcanvas-backdrop-bg: $black;
+
+// Dropdowns
+$dropdown-border-color: desaturate(lighten($border-color, 8%), 16%);
+$dropdown-divider-bg: $border-color;
+
+$dropdown-link-color: $body-color;
+
+$dropdown-link-hover-color: $white;
+$dropdown-link-hover-bg: $light;
+
+$dropdown-link-active-color: $white;
+$dropdown-link-active-bg: $light;
+
+$dropdown-link-disabled-color: $body-secondary-color;
+
+$dropdown-header-color: $body-secondary-color;
+
+// Progress bars
+$progress-bg: $light;
+$progress-bar-color: $white;
+$progress-bar-bg: $primary;
+
+// Other
+$selection-bg: $primary;
+$selection-color: $white;

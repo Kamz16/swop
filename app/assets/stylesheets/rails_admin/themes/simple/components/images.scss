@@ -1,0 +1,19 @@
+.img {
+
+  &-wrapper {
+    overflow: hidden;
+
+    &-avatar {
+      border-radius: 50%;
+      height: rem(40px);
+      width: rem(40px);
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+      }
+    }
+  }
+}

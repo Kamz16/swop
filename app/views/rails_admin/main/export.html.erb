@@ -1,38 +1,38 @@
 <% params = request.params.except(:action, :controller, :utf8, :page, :per_page, :format, :authenticity_token) %>
 <% visible_fields = @model_config.export.with(view: self, object: @abstract_model.model.new, controller: self.controller).visible_fields %>
 <%= form_tag export_path(params.merge(all: true)), method: 'post', class: "main", data: {turbo: false} do %>
-  <section class="bg-white p-4 p-md-5 mb-5 mb-md-6 shadow rounded-3">
+  <section class="mb-5 mb-md-7">
     <input name="send_data" type="hidden" value="true" />
-    <fieldset id="fields_to_export" class="mb-5">
-      <h2 class="h4 mb-0">
+    <fieldset id="fields_to_export" class="mb-4">
+      <h2 class="h3 mb-0">
         <legend class="mb-0"><%= t('admin.export.select') %></legend>
       </h2>
     </fieldset>
     <fieldset id="fields_to_export">
-      <div class="control-group">
+      <div class="control-group mb-6">
         <div class="checkbox mb-3">
-          <label class="form-check" for="reverse-selection">
+          <label class="form-check mb-0" for="reverse-selection">
             <%= check_box_tag 'all', 'all', true, { id: 'reverse-selection', class: 'reverse-selection form-check-input' } %>
-            <h3 class="h6 form-check-label mb-0"><%= t('admin.export.fields_from', name: @model_config.label_plural) %></h3>
+            <div class="h5 fw-medium form-check-label"><%= t('admin.export.fields_from', name: @model_config.label_plural) %></div>
           </label>
         </div>
-        <div class="controls row gy-2">
+        <div class="controls row gx-8 gy-2">
           <% visible_fields.select{ |f| !f.association? || f.association.polymorphic? }.each do |field| %>
             <% list = field.virtual? ? 'methods' : 'only' %>
             <div class="col-auto">
               <div class="checkbox">
                 <% if field.association? && field.association.polymorphic? %>
-                  <label class="form-check form-label" for="schema_<%= list %>_<%= field.method_name %>">
+                  <label class="form-check form-label mb-0" for="schema_<%= list %>_<%= field.method_name %>">
                     <%= check_box_tag "schema[#{list}][]", field.method_name, true, { id: "schema_#{list}_#{field.method_name}", class: "form-check-input" } %>
                     <%= field.label + " [id]" %>
                   </label>
                   <% polymorphic_type_column_name = @abstract_model.properties.detect { |p| field.association.foreign_type == p.name }.name %>
-                  <label class="form-check form-label" for="schema_<%= list %>_<%= polymorphic_type_column_name %>">
+                  <label class="form-check form-label mb-0" for="schema_<%= list %>_<%= polymorphic_type_column_name %>">
                     <%= check_box_tag "schema[#{list}][]", polymorphic_type_column_name, true, { id: "schema_#{list}_#{polymorphic_type_column_name}", class: "form-check-input" } %>
                     <%= field.label + " [type]" %>
                   </label>
                 <% else %>
-                  <label class="form-check form-label" for="schema_<%= list %>_<%= field.name %>">
+                  <label class="form-check form-label mb-0" for="schema_<%= list %>_<%= field.name %>">
                     <%= check_box_tag "schema[#{list}][]", field.name, true, { id: "schema_#{list}_#{field.name}", class: "form-check-input" } %>
                     <%= field.label %>
                   </label>
@@ -42,23 +42,22 @@
           <% end %>
         </div>
       </div>
-      <hr class="my-6">
-      <h2 class="h5 mb-5">Associations</h2>
+      <h3 class="h4 mb-4">Associations</h3>
       <% visible_fields.select{ |f| f.association? && !f.association.polymorphic? }.each_with_index do |field, group_index| %>
         <% fields = field.associated_model_config.export.with(controller: self.controller, view: self, object: (associated_model = field.associated_model_config.abstract_model.model).new).visible_fields.select{ |f| !f.association? } %>
-        <div class="control-group">
+        <div class="control-group <%= "mb-6" if group_index < visible_fields.select{ |f| f.association? && !f.association.polymorphic? }.size - 1 %>">
           <div class="checkbox mb-3">
-            <label class="form-check">
+            <label class="form-check mb-0">
               <%= check_box_tag 'all', 'all', true, { id: 'reverse-selection', class: 'reverse-selection form-check-input' } %>
-              <h3 class="h6 form-check-label mb-0"><%= t('admin.export.fields_from_associated', name: field.label.pluralize) %></h3>
+              <div class="h5 fw-medium form-check-label"><%= t('admin.export.fields_from_associated', name: field.label.pluralize) %></div>
             </label>
           </div>
-          <div class="controls row gy-2">
+          <div class="controls row gx-8 gy-2">
             <% fields.each do |associated_model_field| %>
               <% list = associated_model_field.virtual? ? 'methods' : 'only' %>
               <div class="col-auto">
                 <div class="checkbox">
-                  <label class="form-check form-label" for="schema_include_<%= field.name %>_<%= list %>_<%= associated_model_field.name %>">
+                  <label class="form-check mb-0 form-label" for="schema_include_<%= field.name %>_<%= list %>_<%= associated_model_field.name %>">
                     <%= check_box_tag "schema[include][#{field.name}][#{list}][]", associated_model_field.name, true, { id: "schema_include_#{field.name}_#{list}_#{associated_model_field.name}", class: "form-check-input" } %>
                     <%= associated_model_field.label %>
                   </label>
@@ -67,25 +66,24 @@
             <% end %>
           </div>
         </div>
-        <%= "<hr class='my-6'>".html_safe if group_index < visible_fields.select{ |f| f.association? && !f.association.polymorphic? }.size - 1 %>
       <% end %>
     </fieldset>
   </section>
-  <section class="bg-white p-4 p-md-5 mb-5 mb-md-6 shadow rounded-3">
+  <section class="mb-5 mb-md-6">
     <fieldset>
-      <h2 class="h4 d-flex mb-5">
+      <h2 class="h3 d-flex mb-4">
         <legend class="mb-0"><%= t('admin.export.options_for', name: 'csv') %></legend>
       </h2>
       <div class="control-group row mb-3">
         <% guessed_encoding = @abstract_model.encoding %>
         <label class="form-label" for="csv_options_encoding_to"><%= t('admin.export.csv.encoding_to') %></label>
-        <div class="controls col-md-11 col-xl-6">
+        <div class="controls col col-md-10 col-xl-5">
           <%= select_tag 'csv_options[encoding_to]', options_for_select(Encoding.name_list.sort), include_blank: true, placeholder: t('admin.misc.search'), :'data-enumeration' => true %>
         </div>
         <p class="form-text mb-0"><%= t('admin.export.csv.encoding_to_help', name: guessed_encoding) %></p>
       </div>
       <div class="control-group mb-3">
-        <div class="form-check form-switch d-flex flex-column">
+        <div class="form-check mb-0 form-switch d-flex flex-column">
           <label class="form-label for="csv_options_skip_header"><%= t('admin.export.csv.skip_header') %></label>
           <%= check_box_tag 'csv_options[skip_header]', 'true', false, { class: 'form-check-input' } %>
         </div>
@@ -95,7 +93,7 @@
         <label class="form-label" for="csv_options_generator_col_sep">
           <%= t('admin.export.csv.col_sep') %>
         </label>
-        <div class="controls col-md-11 col-xl-6">
+        <div class="controls col col-md-10 col-xl-5">
           <%= select_tag 'csv_options[generator][col_sep]', options_for_select({ '' => t('admin.export.csv.default_col_sep'), "<comma> ','" => ',', "<semicolon> ';'" => ';', '<tabs>' => "'\t'" }), placeholder: t('admin.misc.search'), :'data-enumeration' => true %>
         </div>
         <p class="form-text mb-0"><%= t('admin.export.csv.col_sep_help', value: t('admin.export.csv.default_col_sep')) %></p>
@@ -106,6 +104,7 @@
     <input name="return_to" type="<%= :hidden %>" value="<%= (params[:return_to].presence || request.referer) %>" />
     <div class="col-auto">
       <button class="btn btn-primary" name="csv" type="submit">
+        <i class="fas fa-check"></i>
         <%= t("admin.export.confirmation", name: 'csv') %>
       </button>
     </div>
@@ -121,6 +120,7 @@
     </div>
     <div class="col-auto">
       <button class="btn btn-danger" name="_continue" type="submit">
+        <i class="fas fa-times"></i>
         <%= t("admin.form.cancel") %>
       </button>
     </div>

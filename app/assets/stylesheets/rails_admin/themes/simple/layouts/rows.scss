@@ -1,0 +1,34 @@
+.row {
+
+  &-application-layout {
+
+    @include media-breakpoint-up(xl) {
+      height: 100% !important;
+      position: fixed !important;
+      width: 100% !important;
+    }
+
+    .col-content {
+      -ms-overflow-style: none; // Internet Explorer 10+
+      scrollbar-width: none; // Firefox
+
+      @include media-breakpoint-up(xl) {
+        height: 100% !important;
+        overflow: scroll !important;
+        padding-left: $spacer-7;
+      }
+
+      &::-webkit-scrollbar {
+        display: none; // Safari and Chrome
+      }
+
+      .container-fluid {
+
+        @include media-breakpoint-up(xl) {
+          height: 100% !important;
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}

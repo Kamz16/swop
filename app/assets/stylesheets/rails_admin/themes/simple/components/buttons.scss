@@ -1,0 +1,138 @@
+.btn {
+  letter-spacing: $letter-spacing-body;
+
+  &-primary {
+
+    @include button-variant(
+      $background: $primary,
+      $border: $primary,
+      $color: $white,
+      $hover-background: lighten($primary, 2.5%),
+      $hover-border: lighten($primary, 2.5%),
+      $hover-color: $white,
+      $active-background: darken(desaturate($primary, 2.5%), 2.5%),
+      $active-border: darken(desaturate($primary, 2.5%), 2.5%),
+      $active-color: $white,
+      $disabled-background: $primary,
+      $disabled-border: $primary,
+      $disabled-color: $white
+    );
+  }
+
+  &-secondary {
+
+    @include button-variant(
+      $background: $secondary,
+      $border: $secondary,
+      $color: $dark,
+      $hover-background: lighten($secondary, 7.5%),
+      $hover-border: lighten($secondary, 7.5%),
+      $hover-color: $dark,
+      $active-background: darken(desaturate($secondary, 5%), 5%),
+      $active-border: darken(desaturate($secondary, 5%), 5%),
+      $active-color: $dark,
+      $disabled-background: $secondary,
+      $disabled-border: $secondary,
+      $disabled-color: $dark
+    );
+  }
+
+  &-success {
+
+    @include button-variant(
+      $background: $success,
+      $border: $success,
+      $color: $white,
+      $hover-background: lighten($success, 5%),
+      $hover-border: lighten($success, 5%),
+      $hover-color: $white,
+      $active-background: darken(desaturate($success, 3.25%), 3.25%),
+      $active-border: darken(desaturate($success, 3.25%), 3.25%),
+      $active-color: $white,
+      $disabled-background: $success,
+      $disabled-border: $success,
+      $disabled-color: $white
+    );
+  }
+
+  &-info {
+
+    @include button-variant(
+      $background: $info,
+      $border: $info,
+      $color: $white,
+      $hover-background: lighten($info, 2.5%),
+      $hover-border: lighten($info, 2.5%),
+      $hover-color: $white,
+      $active-background: darken(desaturate($info, 2.5%), 2.5%),
+      $active-border: darken(desaturate($info, 2.5%), 2.5%),
+      $active-color: $white,
+      $disabled-background: $info,
+      $disabled-border: $info,
+      $disabled-color: $white
+    );
+  }
+
+  &-warning {
+
+    @include button-variant(
+      $background: $warning,
+      $border: $warning,
+      $color: $white,
+      $hover-background: lighten($warning, 4%),
+      $hover-border: lighten($warning, 4%),
+      $hover-color: $white,
+      $active-background: darken(desaturate($warning, 3.25%), 3.25%),
+      $active-border: darken(desaturate($warning, 3.25%), 3.25%),
+      $active-color: $white,
+      $disabled-background: $warning,
+      $disabled-border: $warning,
+      $disabled-color: $white
+    );
+  }
+
+  &-danger {
+
+    @include button-variant(
+      $background: $danger,
+      $border: $danger,
+      $color: $white,
+      $hover-background: lighten($danger, 3.25%),
+      $hover-border: lighten($danger, 3.25%),
+      $hover-color: $white,
+      $active-background: darken(desaturate($danger, 5%), 3.25%),
+      $active-border: darken(desaturate($danger, 5%), 3.25%),
+      $active-color: $white,
+      $disabled-background: $danger,
+      $disabled-border: $danger,
+      $disabled-color: $white
+    );
+  }
+
+  &-white {
+    box-shadow: 0 rem(2px 3px -1px) rgba($dark, 0.075);
+
+    @include button-variant(
+      $background: $white,
+      $border: $input-border-color,
+      $color: $dark,
+      $hover-background: darken($white, 1%),
+      $hover-border: darken($border-color, 4.25%),
+      $hover-color: $dark,
+      $active-background: darken($white, 2%),
+      $active-border: darken($border-color, 6.50%),
+      $active-color: $dark,
+      $disabled-background: $white,
+      $disabled-border: $input-border-color,
+      $disabled-color: $dark
+    );
+
+    &:hover {
+      box-shadow: 0 rem(1px 2px 0px) rgba($dark, 0.0875);
+    }
+
+    &:active {
+      box-shadow: 0 rem(1px 2px 0px) rgba($dark, 0.0875);
+    }
+  }
+}

@@ -1,0 +1,83 @@
+.table {
+  margin-bottom: 0;
+
+  td, th {
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+  }
+
+  thead th,
+  thead tr {
+    color: $body-secondary-color !important;
+    padding-top: 0;
+  }
+
+  thead,
+  tbody {
+
+    th,
+    td {
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .header {
+    position: relative;
+    cursor: pointer;
+
+    &:hover::after {
+      @extend .fa-solid;
+      @extend .fa-xs;
+      border: unset;
+      content: "\f077";
+      float: unset;
+      margin-top: unset;
+      position: absolute;
+      right: rem(5px);
+      top: 37.5%;
+    }
+  }
+
+  .headerSortUp::after {
+    @extend .fa-solid;
+    @extend .fa-xs;
+    content: "\f078";
+    position: absolute;
+    right: rem(5px);
+    top: 37.5%;
+  }
+
+  &-responsive {
+    -ms-overflow-style: none; // Internet Explorer 10+
+    margin-left: -$spacer-4;
+    margin-right: -$spacer-4;
+    padding-left: $spacer-4;
+    padding-right: $spacer-4;
+    scrollbar-width: none; // Firefox
+
+    @include media-breakpoint-up(md) {
+      margin-left: -$spacer-6;
+      margin-right: -$spacer-6;
+      padding-left: $spacer-6;
+      padding-right: $spacer-6;
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin-left: -$spacer-7;
+      margin-right: -$spacer-7;
+      padding-left: $spacer-7;
+      padding-right: $spacer-7;
+    }
+
+    &::-webkit-scrollbar {
+      display: none; // Safari and Chrome
+    }
+  }
+}

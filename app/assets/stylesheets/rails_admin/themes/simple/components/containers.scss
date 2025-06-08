@@ -1,0 +1,15 @@
+.container {
+
+  &-fluid {
+
+    @include media-breakpoint-up(md) {
+      padding-left: $spacer-6;
+      padding-right: $spacer-6;
+    }
+
+    @include media-breakpoint-up(lg) {
+      padding-left: $spacer-7;
+      padding-right: $spacer-7;
+    }
+  }
+}

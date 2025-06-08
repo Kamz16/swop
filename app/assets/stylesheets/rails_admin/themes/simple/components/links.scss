@@ -1,0 +1,25 @@
+.link {
+
+  &,
+  *[class^="fa"] {
+    transition: all $transition;
+  }
+
+  &-white {
+
+    &,
+    *[class^="fa"] {
+      color: $white;
+    }
+
+    &:hover,
+    &:hover *[class^="fa"] {
+      color: $white;
+    }
+  }
+
+  &-scalable:hover {
+    text-decoration: none;
+    transform: scale(1.075);
+  }
+}

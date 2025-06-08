@@ -1,0 +1,25 @@
+.sidebar {
+
+  .nav-link {
+
+    &:hover {
+      color: $dark;
+    }
+
+    &.active:hover {
+      color: $white;
+    }
+  }
+
+  .btn-toggle {
+    color: $dark;
+
+    *[class^="fa"] {
+      color: $dark;
+    }
+
+    &:active {
+      color: $dark;
+    }
+  }
+}

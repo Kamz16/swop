@@ -1,0 +1,43 @@
+<title><%= "#{@abstract_model.try(:pretty_name) || @page_name} | #{[_get_plugin_name[0] || 'Rails', _get_plugin_name[1] || 'Admin'].join(' ')}" %></title>
+
+<header class="row align-items-center gx-4 gy-0 gx-md-5 mb-6 mb-md-7" data-model="<%= @abstract_model.to_param %>">
+  <div class="col-15 col-md-17 col-lg-19 flex-grow-1 me-auto">
+    <nav aria-label="breadcrumb">
+      <%= breadcrumb %>
+    </nav>
+    <h1 class="text-truncate mb-0"><%= @page_name %></h1>
+  </div>
+  <!-- if md breakpoint -->
+  <div class="col-auto d-none d-md-flex">
+    <%= link_to (icon "fa-solid", "info-circle"), "https://www.swopthemes.com/", class: "fs-4 link link-scalable link-white" %>
+  </div>
+  <!-- if md breakpoint -->
+  <div class="col-auto d-none d-md-flex">
+    <%= link_to (icon "fa-brands", "github"), "https://github.com/Kamz16/swop", class: "fs-4 link link-scalable link-white" %>
+  </div>
+  <div class="col-auto gx-6 gx-md-7">
+    <div class="dropdown">
+      <button class="btn border-0 p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="img-wrapper img-wrapper-avatar">
+          <%= image_tag "https://picsum.photos/300/300", alt: "", title: "" %>
+        </div>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><%= link_to "#{icon "fa-solid", "user", class: "fa-sm fa-fw me-2"}Your account".html_safe, edit_user_link, class: "dropdown-item" %></li>
+        <li><%= link_to "#{icon "fa-solid", "right-from-bracket", class: "fa-sm fa-fw me-2"}Log out".html_safe, logout_path, method: logout_method, class: "dropdown-item", data: {turbo: 'false'} %></li>
+      </ul>
+    </div>
+  </div>
+  <!-- unless xl breakpoint -->
+  <div class="col-auto gx-6 gx-md-7 d-xl-none">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <%= icon "fa-solid", "bars", class: "fs-3 text-white" %>
+    </button>
+  </div>
+</header>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+  <div class="offcanvas-body sidebar list-unstyled p-4 p-md-6 p-lg-7">
+    <%= render partial: "layouts/rails_admin/custom_navigation" %>
+  </div>
+</div>

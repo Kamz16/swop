@@ -153,7 +153,7 @@ import I18n from "./i18n";
 
     _buttonField: function () {
       return $(
-        '<div class="input-group-btn btn btn-white dropdown-toggle">' +
+        '<div class="input-group-btn btn btn-white dropdown-toggle" title="Show All Items" role="button">' +
         "</div>"
       );
     },
