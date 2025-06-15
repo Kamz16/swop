@@ -89,6 +89,7 @@ module RailsAdmin
         li_stack = navigation parent_groups, nodes
 
         label = navigation_label || t('admin.misc.navigation')
+
         collapsible_stack(label, 'main', li_stack)
       end.join.html_safe
     end
@@ -126,7 +127,7 @@ module RailsAdmin
         css_classes = ['nav-link']
         css_classes.push("nav-level-#{level}") if level > 0
         css_classes.push('active') if @action && current_action?(@action, model_param)
-        li = content_tag :li, class: "nav-item", data: {model: model_param} do
+        li = content_tag :li, data: {model: model_param} do
           link_to nav_icon + " " + node.label_plural, url, class: css_classes.join(' ')
         end
         child_nodes = parent_groups[abstract_model.model_name]
@@ -139,7 +140,7 @@ module RailsAdmin
         (parent_actions ||= []) << action
       end while action.breadcrumb_parent && (action = action(*action.breadcrumb_parent)) # rubocop:disable Lint/Loop
 
-      content_tag(:ol, class: 'breadcrumb mb-0 mb-md-1') do
+      content_tag(:ol, class: 'breadcrumb') do
         parent_actions.collect do |a|
           am = a.send(:eval, 'bindings[:abstract_model]')
           o = a.send(:eval, 'bindings[:object]')
@@ -167,7 +168,7 @@ module RailsAdmin
         li_class = ['nav-item', 'icon', "#{action.key}_#{parent}_link"].
                    concat(action.enabled? ? [] : ['disabled'])
         content_tag(:li, {class: li_class}.merge(only_icon ? {title: wording, rel: 'tooltip'} : {})) do
-          label = content_tag(:i, '', {class: "fa-sm #{action.link_icon}"}) + ' ' + content_tag(:span, wording, (only_icon ? {style: 'display:none'} : {}))
+          label = content_tag(:i, '', {class: action.link_icon}) + ' ' + content_tag(:span, wording, (only_icon ? {style: 'display:none'} : {}))
           if action.enabled? || !only_icon
             href =
               if action.enabled?
@@ -248,12 +249,12 @@ module RailsAdmin
       return nil unless li_stack.present?
 
       collapse_classname = "#{class_prefix}-#{Digest::MD5.hexdigest(label)[0..7]}"
-      content_tag(:li) do
-        content_tag(:button, 'aria-expanded': true, class: 'btn btn-toggle align-items-center', data: {bs_toggle: "collapse", bs_target: ".sidebar .#{collapse_classname}"}) do
-        html_escape(' ' + label) + content_tag(:i, '', class: 'fas fa-sm fa-angle-up')
+      content_tag(:li, class: 'mb-1') do
+        content_tag(:button, 'aria-expanded': true, class: 'btn btn-toggle align-items-center rounded', data: {bs_toggle: "collapse", bs_target: ".sidebar .#{collapse_classname}"}) do
+          content_tag(:i, '', class: 'fas fa-chevron-down') + html_escape(' ' + label)
         end +
           content_tag(:div, class: "collapse show #{collapse_classname}") do
-            content_tag(:ul, class: 'btn-toggle-nav list-unstyled') do
+            content_tag(:ul, class: 'btn-toggle-nav list-unstyled fw-normal pb-1') do
               li_stack
             end
           end
