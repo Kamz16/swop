@@ -19,7 +19,7 @@
     <div class="dropdown">
       <button class="btn border-0 p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         <div class="img-wrapper img-wrapper-avatar">
-          <%= image_tag "https://picsum.photos/300/300", alt: "", title: "" %>
+          <%= [RailsAdmin::Config.show_gravatar && image_tag(gravatar_url(_current_user.email), alt: _current_user.name),].filter(&:present?).join.html_safe %>
         </div>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
