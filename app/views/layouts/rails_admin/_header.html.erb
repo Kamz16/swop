@@ -23,7 +23,7 @@
         </div>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
-        <li><%= link_to "#{icon "fa-solid", "user", class: "fa-sm fa-fw me-2"}Your account".html_safe, edit_user_link, class: "dropdown-item" %></li>
+        <li><%= edit_user_link %></li>
         <li><%= link_to "#{icon "fa-solid", "right-from-bracket", class: "fa-sm fa-fw me-2"}Log out".html_safe, logout_path, method: logout_method, class: "dropdown-item", data: {turbo: 'false'} %></li>
       </ul>
     </div>

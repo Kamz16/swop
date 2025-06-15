@@ -41,9 +41,9 @@ module RailsAdmin
           id: _current_user.id,
         )
 
-        link_to content, edit_url, class: 'nav-link'
+        link_to content, edit_url, class: 'dropdown-item'
       else
-        content_tag :span, content, class: 'nav-link'
+        content_tag :span, content, class: 'dropdown-item'
       end
     end
 
@@ -233,12 +233,7 @@ module RailsAdmin
   private
 
     def edit_user_link_label
-      [
-        RailsAdmin::Config.show_gravatar &&
-          image_tag(gravatar_url(_current_user.email), alt: ''),
-
-        content_tag(:span, _current_user.email),
-      ].filter(&:present?).join.html_safe
+      "#{icon('fa-solid', 'user', class: 'fa-sm fa-fw me-2')}Your account".html_safe
     end
 
     def gravatar_url(email)
