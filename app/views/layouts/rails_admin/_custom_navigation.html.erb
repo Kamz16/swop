@@ -1,8 +1,10 @@
 <% actions(:root).select(&:show_in_navigation).each do |action| %>
-  <li class="nav-item <%= action.action_name %>_root_link">
-    <%= link_to wording_for(:menu, action), { action: action.action_name, controller: "rails_admin/main" }, {class: ["nav-link #{"active" if current_page?("/")}"]}.merge(action.turbo? ? {} : {data: {turbo: "false"}}) %>
+  <% path = rails_admin.url_for(action: action.action_name, controller: "rails_admin/main") %>
+  <li class="nav-item <%= "#{action.action_name}_root_link" %>">
+    <%= link_to wording_for(:menu, action), path, class: "nav-link #{'active' if current_page?(path)}", data: (action.turbo? ? {} : { turbo: "false" }) %>
   </li>
 <% end %>
+
 <%= main_navigation %>
 <%= root_navigation %>
 <%= static_navigation %>
