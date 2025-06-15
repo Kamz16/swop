@@ -98,12 +98,12 @@ import I18n from "./i18n";
       this.collection.wrap('<div class="wrapper"/>');
 
       this.add = $(
-        '<a href="#" class="fas fa-chevron-circle-right ra-multiselect-item-add"></a>'
+        '<a href="#" class="fas fa-chevron-circle-right ra-multiselect-item-add d-block mb-3 mb-md-4"></a>'
       ).attr("title", this.options.regional.add);
       columns.center.append(this.add);
       if (this.options.removable) {
         this.remove = $(
-          '<a href="#" class="fas fa-chevron-circle-left ra-multiselect-item-remove"></a>'
+          '<a href="#" class="fas fa-chevron-circle-left ra-multiselect-item-remove d-block"></a>'
         ).attr("title", this.options.regional.remove);
         columns.center.append(this.remove);
       }
