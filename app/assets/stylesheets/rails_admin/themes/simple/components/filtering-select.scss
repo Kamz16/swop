@@ -32,3 +32,11 @@
     }
   }
 }
+
+.belongs_to_association_type,
+.has_many_association_type {
+
+  .modal-actions .btn-info {
+    @extend .btn-primary;
+  }
+}
