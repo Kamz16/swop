@@ -9,7 +9,7 @@
         <div class="list-group">
           <% fields.each_with_index do |field, index| %>
             <div class="list-group-item border-0 <%= field.type_css_class %> <%= field.css_class %> mb-3">
-              <div class="text-body-secondary"><%= field.label %></div>
+              <div class="text-muted"><%= field.label %></div>
               <div class="fw-semibold text-dark"><%= field.pretty_value %></div>
             </div>
           <% end %>
